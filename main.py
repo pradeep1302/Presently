@@ -35,17 +35,14 @@ def download_image_from_url(url: str) -> np.ndarray:
 # API endpoint for face encoding generation
 @app.post("/generateEncoding/")
 async def generate_face_encoding(request: ImageURLRequest):
-    print('aa gya')
 
     image_url = request.url
     
     # Download image
     image = download_image_from_url(image_url)
-    print(image.dtype)
     
     # Convert image from BGR (OpenCV default) to RGB (face_recognition requirement)
     rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    print(rgb_image.dtype)
     
     # Find face locations and generate face encodings
     try:
